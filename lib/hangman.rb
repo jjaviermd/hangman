@@ -1,37 +1,45 @@
 require 'byebug'
 SOURCE = File.readlines("1000_words.txt").
-  select { |line| line.length.between?(5,12)}
+  select { |line| line.length.between?(6,12)}
 
 class Game
 
-  attr_reader :secret, :counter, :past_guesses, :guess_line
+  attr_reader :secret, :counter, :guess_line
   attr_writer :guess_line
 
   def initialize
-    @secret = SOURCE.sample.chomp.split("")
+    @secret = SOURCE.sample.chomp.upcase.split("")
     @guess_line = Array.new(secret.length, "_")
     @counter = 10
     @past_guesses = []
   end
 
   def secret_vs_guess(guess)
-    unless self.past_guesses.include?(guess)
-      if self.secret.include?(guess)
-        secret.each_with_index do |letra, i|
-          if letra == guess
-           self.guess_line[i] = letra
-          end
-       end 
+    if self.secret.include?(guess)
+      secret.each_with_index do |letra, i|
+      if letra == guess
+        self.guess_line[i] = letra
       end
+      end 
+    else 
+      puts "You chossed poorly"
+      @counter -= 1
+    end
   end
-  @counter -= 1
-  self.past_guesses.push(guess)
+
+  def show_guessess
+    puts self.guess_line.join("")
+  end
+
+  def game_over
+    puts "GAME OVER"
+    reveal_secret
+    exit
+  end
+
+  def reveal_secret
+    puts "The hidden word was #{self.secret.join("")}"
   end
  
 
 end
-
- 
-game = Game.new
-byebug
-puts game.secret_word

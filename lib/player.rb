@@ -12,18 +12,23 @@ class Player
     @p_guesses = Array.new
   end
 
-  def set_guess(letter)
-    self.guess = letter.upcase
+  def set_guess
+    puts "Choose wisely"
+    letter = gets.chomp.upcase
+    unless self.p_guesses.include?(letter) || letter =~ /[0-9]/
+    self.guess = letter[0].upcase
+    self.to_p_guesses(letter)
+    else 
+      puts "Nah-ah!"
+      set_guess
+    end
   end
 
   def clear_guess
     self.guess.clear
   end
 
-  def to_p_guesses (letter)
+  def to_p_guesses(letter)
     self.p_guesses.push(letter)
   end
 end
-
-byebug
-player = Player.new
