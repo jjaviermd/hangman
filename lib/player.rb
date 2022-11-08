@@ -38,22 +38,3 @@ class Player < Shale::Mapper
     puts "Wrong letters: #{self.p_guesses.join("//")}"
   end
 end
-
-
-# file = File.read("shale.yaml")
-# player =Player.from_yaml(file)
-# pp player
-
-# p
-
-
-
-
-# 4.times do
-#   player.set_guess
-# end
-# player_yaml = player.to_yaml
-# File.open("shale.yaml", "w"){ |file| file.write player_yaml}
-
-# player2 = Player.from_yaml(player_yaml)
-# p player2

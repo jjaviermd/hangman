@@ -44,5 +44,4 @@ class Game < Shale::Mapper
     puts "The hidden word was #{self.secret.join("")}"
   end
  
-
 end
