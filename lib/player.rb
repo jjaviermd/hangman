@@ -1,7 +1,9 @@
 require 'byebug'
+require 'shale'
 
-class Player
-
+class Player < Shale::Mapper
+  attribute :p_guesses, Shale::Type::String, collection: true
+  attribute :guess, Shale::Type::String
   private
   attr_writer :p_guesses, :guess
 
@@ -31,4 +33,27 @@ class Player
   def to_p_guesses(letter)
     self.p_guesses.push(letter)
   end
+
+  def show_wrongs
+    puts "Wrong letters: #{self.p_guesses.join("//")}"
+  end
 end
+
+
+# file = File.read("shale.yaml")
+# player =Player.from_yaml(file)
+# pp player
+
+# p
+
+
+
+
+# 4.times do
+#   player.set_guess
+# end
+# player_yaml = player.to_yaml
+# File.open("shale.yaml", "w"){ |file| file.write player_yaml}
+
+# player2 = Player.from_yaml(player_yaml)
+# p player2

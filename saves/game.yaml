@@ -1,0 +1,16 @@
+---
+secret:
+- C
+- E
+- L
+- E
+- B
+- S
+counter: 0
+guess_line:
+- _
+- E
+- _
+- E
+- _
+- S
